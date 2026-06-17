@@ -23,23 +23,31 @@ const Contact = () => {
   };
 
   const handleSubmit = async (e) => {
-    e.preventDefault();
+  e.preventDefault();
 
-    setLoading(true);
+  setLoading(true);
 
-    try {
-    await emailjs.send(
-  'service_k8lvpoi',
-  'template_9amufxc',
-  {
-    name: formData.name,
-    email: formData.email,
-    subject: formData.subject,
-    message: formData.message,
-  },
-  'J4Zn6j5gmA3QOupBG'
-);
+  try {
+    const response = await fetch(
+      'https://api.web3forms.com/submit',
+      {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({
+          access_key: '9f09b56f-96f4-4a65-80d5-1f875e0b9afa',
+          name: formData.name,
+          email: formData.email,
+          subject: formData.subject,
+          message: formData.message,
+        }),
+      }
+    );
 
+    const result = await response.json();
+
+    if (result.success) {
       alert('Message sent successfully!');
 
       setFormData({
@@ -48,13 +56,14 @@ const Contact = () => {
         subject: '',
         message: '',
       });
-    } catch (error) {
-      console.error(error);
-      alert('Failed to send message.');
-    } finally {
-      setLoading(false);
     }
-  };
+  } catch (error) {
+    console.error(error);
+    alert('Failed to send message');
+  }
+
+  setLoading(false);
+};
 
   return (
     <section id="contact" className="py-24 relative z-10">
