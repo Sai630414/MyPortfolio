@@ -5,7 +5,7 @@ const timelineData = [
   {
     year: '2023 - Present',
     title: 'Computer Science Student',
-    organization: 'University Name',
+    organization: 'VIT-AP University,Amaravati',
     description: 'Currently pursuing my degree, focusing on web technologies, data structures, and software engineering principles.',
     icon: GraduationCap
   },
