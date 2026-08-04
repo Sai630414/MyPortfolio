@@ -1,91 +1,97 @@
+import React from 'react';
 import { motion } from 'framer-motion';
-import { Code2, FolderGit2, Trophy } from 'lucide-react';
-
-const stats = [
-  { label: 'Projects Built', value: '3+', icon: FolderGit2, color: 'text-primary' },
-  { label: 'Technologies', value: '5+', icon: Code2, color: 'text-secondary' },
-  { label: 'GitHub Repos', value: '10+', icon: Trophy, color: 'text-accent' },
-];
 
 const About = () => {
+  const stats = [
+    { label: 'Featured Projects', value: '03' },
+    { label: 'Core Competencies', value: '10+' },
+    { label: 'GitHub Repositories', value: '10+' },
+    { label: 'Problem Solving', value: 'Active' },
+  ];
+
   return (
-    <section id="about" className="py-24 relative z-10">
-      <div className="container mx-auto px-6">
+    <section id="about" className="py-32 relative z-10 border-b border-[#3A3A3A]/40">
+      <div className="container mx-auto px-6 md:px-12">
         
+        {/* Editorial Section Header */}
         <motion.div
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
-          transition={{ duration: 0.5 }}
-          className="text-center mb-16"
+          transition={{ duration: 0.6 }}
+          className="border-b border-[#3A3A3A] pb-4 mb-16 flex flex-wrap justify-between items-baseline"
         >
-          <h2 className="text-4xl md:text-5xl font-bold mb-4">About <span className="text-gradient">Me</span></h2>
-          <div className="w-24 h-1 bg-gradient-to-r from-primary to-secondary mx-auto rounded-full"></div>
+          <h2 className="font-serif text-4xl sm:text-5xl font-normal uppercase text-white tracking-tight">
+            SECTION I • <span className="italic text-[#CFCFCF]">ABOUT THE ENGINEER</span>
+          </h2>
+          <span className="font-mono text-xs text-[#7A7A7A] uppercase tracking-widest mt-2 sm:mt-0">
+            BIOGRAPHY & PHILOSOPHY
+          </span>
         </motion.div>
 
-        <div className="flex flex-col lg:flex-row gap-12 items-center">
+        {/* Magazine Editorial Grid */}
+        <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 items-start">
           
-          {/* Story Section */}
+          {/* Left Column: Large Editorial Quotation */}
           <motion.div
             initial={{ opacity: 0, x: -30 }}
             whileInView={{ opacity: 1, x: 0 }}
             viewport={{ once: true }}
-            transition={{ duration: 0.5, delay: 0.2 }}
-            className="w-full lg:w-1/2 glass-card p-8 rounded-2xl border border-white/5 relative overflow-hidden"
+            transition={{ duration: 0.7 }}
+            className="lg:col-span-5 space-y-6"
           >
-            <div className="absolute top-0 right-0 w-32 h-32 bg-primary/10 rounded-full blur-3xl"></div>
-            <h3 className="text-2xl font-semibold mb-6 text-white">My Journey</h3>
-            <div className="space-y-4 text-muted leading-relaxed">
-              <p>
-                Hello! I'm <span className="text-white font-medium">Sai KondaReddy</span>, an aspiring Frontend Developer with a deep passion for building beautiful, functional, and user-centered web applications. 
+            <div className="border border-[#3A3A3A] bg-[#141414] p-8 sm:p-10 relative">
+              <span className="font-serif text-7xl text-[#3A3A3A] absolute top-4 left-6 pointer-events-none">
+                “
+              </span>
+              <p className="font-serif text-xl sm:text-2xl italic text-white leading-relaxed pt-6 font-normal">
+                Engineering software is not merely about writing code; it is the craft of creating intuitive systems, elegant logic, and lasting digital experiences.
               </p>
-              <p>
-                My journey into web development started out of curiosity and quickly grew into a full-blown passion. I love blending the technical aspects of coding with the creative elements of design. My primary focus these days is mastering <span className="text-primary font-medium">React</span> and building seamless digital experiences.
-              </p>
-              <p>
-                Currently, I am actively learning and building projects using React, Express.js, and modern CSS frameworks like Tailwind. When I'm not coding, I'm constantly exploring new tools and design trends to stay ahead of the curve.
-              </p>
+              <div className="border-t border-[#3A3A3A] pt-4 mt-6 flex justify-between items-center font-mono text-xs text-[#7A7A7A]">
+                <span>SAI KONDAREDDY</span>
+                <span>VIT-AP UNIVERSITY</span>
+              </div>
             </div>
           </motion.div>
 
-          {/* Stats Section */}
-          <div className="w-full lg:w-1/2 grid grid-cols-1 sm:grid-cols-2 gap-6">
-            {stats.map((stat, index) => {
-              const Icon = stat.icon;
-              return (
-                <motion.div
-                  key={index}
-                  initial={{ opacity: 0, y: 20 }}
-                  whileInView={{ opacity: 1, y: 0 }}
-                  viewport={{ once: true }}
-                  transition={{ duration: 0.5, delay: 0.3 + index * 0.1 }}
-                  className="glass p-6 rounded-xl border border-white/5 hover:border-white/20 transition-all hover:-translate-y-1 group"
-                >
-                  <div className="flex items-center gap-4 mb-4">
-                    <div className={`p-3 rounded-lg bg-surface/80 ${stat.color} group-hover:scale-110 transition-transform`}>
-                      <Icon size={24} />
-                    </div>
-                    <h4 className="text-3xl font-bold text-white">{stat.value}</h4>
-                  </div>
-                  <p className="text-muted font-medium uppercase tracking-wider text-sm">{stat.label}</p>
-                </motion.div>
-              );
-            })}
-            
-            {/* CTA inside stats grid */}
-            <motion.div
-              initial={{ opacity: 0, y: 20 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true }}
-              transition={{ duration: 0.5, delay: 0.6 }}
-              className="glass p-6 rounded-xl border border-primary/30 bg-primary/5 flex flex-col justify-center items-center text-center hover:bg-primary/10 transition-colors cursor-pointer"
-            >
-              <h4 className="text-xl font-semibold text-white mb-2">Let's work together</h4>
-              <p className="text-sm text-muted">Open for internships and freelance opportunities.</p>
-            </motion.div>
-          </div>
+          {/* Right Column: Drop Cap Paragraph & Story */}
+          <motion.div
+            initial={{ opacity: 0, x: 30 }}
+            whileInView={{ opacity: 1, x: 0 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.7, delay: 0.2 }}
+            className="lg:col-span-7 space-y-8"
+          >
+            <div className="space-y-6 text-[#CFCFCF] font-sans font-light text-base sm:text-lg leading-relaxed">
+              <p className="drop-cap">
+                Hello! I am <strong className="text-white font-medium">Sai KondaReddy</strong>, an engineer with a deep passion for building robust web applications, modern full stack architectures, and intelligent software tools.
+              </p>
+              <p>
+                My journey began with a natural curiosity for how digital platforms function behind the scenes. That curiosity evolved into a rigorous discipline covering <span className="text-white">React, JavaScript, Java</span>, modern web frameworks, and algorithmic problem-solving.
+              </p>
+              <p>
+                Currently pursuing my Computer Science degree at <span className="text-white">VIT-AP University</span>, I focus on building practical real-world solutions—from APBusConnect to agricultural decision support systems—ensuring high code quality and clear user utility.
+              </p>
+            </div>
+
+            {/* Editorial Stats Grid */}
+            <div className="grid grid-cols-2 sm:grid-cols-4 gap-4 pt-6 border-t border-[#3A3A3A]">
+              {stats.map((stat, i) => (
+                <div key={i} className="border border-[#3A3A3A] p-4 bg-[#141414] text-center">
+                  <span className="font-serif text-3xl font-bold text-white block mb-1">
+                    {stat.value}
+                  </span>
+                  <span className="font-mono text-[10px] text-[#7A7A7A] uppercase tracking-wider block">
+                    {stat.label}
+                  </span>
+                </div>
+              ))}
+            </div>
+
+          </motion.div>
 
         </div>
+
       </div>
     </section>
   );

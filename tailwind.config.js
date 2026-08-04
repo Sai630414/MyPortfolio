@@ -7,35 +7,28 @@ export default {
   theme: {
     extend: {
       colors: {
-        background: "#0B0F19",
-        surface: "#111827",
-        primary: "#3B82F6",
-        secondary: "#8B5CF6",
-        accent: "#06B6D4",
-        text: "#FFFFFF",
-        muted: "#94A3B8",
+        background: "#0B0B0B",
+        surface: "#141414",
+        primary: "#FFFFFF",
+        secondary: "#CFCFCF",
+        accent: "#7A7A7A",
+        borderDark: "#3A3A3A",
+        muted: "#9E9E9E",
       },
       fontFamily: {
+        serif: ['"Playfair Display"', '"Cormorant Garamond"', 'Georgia', 'serif'],
+        garamond: ['"Cormorant Garamond"', 'serif'],
         sans: ['Inter', 'sans-serif'],
+        mono: ['"IBM Plex Mono"', 'monospace'],
       },
       animation: {
-        'blob': 'blob 7s infinite',
-        'spin-slow': 'spin 3s linear infinite',
+        'grain': 'grain 8s steps(10) infinite',
+        'subtle-float': 'subtleFloat 6s ease-in-out infinite',
       },
       keyframes: {
-        blob: {
-          '0%': {
-            transform: 'translate(0px, 0px) scale(1)',
-          },
-          '33%': {
-            transform: 'translate(30px, -50px) scale(1.1)',
-          },
-          '66%': {
-            transform: 'translate(-20px, 20px) scale(0.9)',
-          },
-          '100%': {
-            transform: 'translate(0px, 0px) scale(1)',
-          },
+        subtleFloat: {
+          '0%, 100%': { transform: 'translateY(0)' },
+          '50%': { transform: 'translateY(-6px)' },
         }
       }
     },

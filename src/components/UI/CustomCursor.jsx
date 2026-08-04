@@ -1,76 +1,68 @@
-import { useEffect, useState } from 'react';
-import { motion } from 'framer-motion';
+import React, { useEffect, useState } from 'react';
 
 const CustomCursor = () => {
-  const [mousePosition, setMousePosition] = useState({
-    x: 0,
-    y: 0
-  });
-
-  const [isHovering, setIsHovering] = useState(false);
+  const [position, setPosition] = useState({ x: -100, y: -100 });
+  const [isHovered, setIsHovered] = useState(false);
+  const [isVisible, setIsVisible] = useState(false);
 
   useEffect(() => {
-    const updateMousePosition = (e) => {
-      setMousePosition({
-        x: e.clientX,
-        y: e.clientY
-      });
+    const handleMouseMove = (e) => {
+      if (!isVisible) setIsVisible(true);
+      setPosition({ x: e.clientX, y: e.clientY });
     };
 
-    const handleMouseOver = (e) => {
+    const handleMouseLeave = () => setIsVisible(false);
+    const handleMouseEnter = () => setIsVisible(true);
+
+    window.addEventListener('mousemove', handleMouseMove);
+    document.body.addEventListener('mouseleave', handleMouseLeave);
+    document.body.addEventListener('mouseenter', handleMouseEnter);
+
+    return () => {
+      window.removeEventListener('mousemove', handleMouseMove);
+      document.body.removeEventListener('mouseleave', handleMouseLeave);
+      document.body.removeEventListener('mouseenter', handleMouseEnter);
+    };
+  }, [isVisible]);
+
+  useEffect(() => {
+    const handleElementHover = (e) => {
+      const target = e.target;
       if (
-        e.target.tagName.toLowerCase() === 'button' ||
-        e.target.tagName.toLowerCase() === 'a' ||
-        e.target.closest('button') ||
-        e.target.closest('a')
+        target.tagName === 'A' ||
+        target.tagName === 'BUTTON' ||
+        target.closest('button') ||
+        target.closest('a') ||
+        target.classList.contains('cursor-pointer')
       ) {
-        setIsHovering(true);
+        setIsHovered(true);
       } else {
-        setIsHovering(false);
+        setIsHovered(false);
       }
     };
 
-    window.addEventListener('mousemove', updateMousePosition);
-    window.addEventListener('mouseover', handleMouseOver);
-
-    return () => {
-      window.removeEventListener('mousemove', updateMousePosition);
-      window.removeEventListener('mouseover', handleMouseOver);
-    };
+    window.addEventListener('mouseover', handleElementHover);
+    return () => window.removeEventListener('mouseover', handleElementHover);
   }, []);
 
-  const variants = {
-    default: {
-      x: mousePosition.x - 16,
-      y: mousePosition.y - 16,
-      scale: 1,
-    },
-    hover: {
-      x: mousePosition.x - 16,
-      y: mousePosition.y - 16,
-      scale: 1.5,
-      backgroundColor: 'rgba(59, 130, 246, 0.4)',
-      border: 'none'
-    }
-  };
+  if (!isVisible) return null;
 
   return (
-    <>
-      <motion.div
-        className="fixed top-0 left-0 w-8 h-8 border-2 border-primary rounded-full pointer-events-none z-50 mix-blend-screen hidden md:block"
-        variants={variants}
-        animate={isHovering ? "hover" : "default"}
-        transition={{ type: 'spring', stiffness: 500, damping: 28, mass: 0.5 }}
-      />
-      <motion.div
-        className="fixed top-0 left-0 w-2 h-2 bg-accent rounded-full pointer-events-none z-50 hidden md:block"
-        animate={{
-          x: mousePosition.x - 4,
-          y: mousePosition.y - 4,
+    <div className="pointer-events-none fixed inset-0 z-50 overflow-hidden hidden md:block">
+      {/* Minimalist Reticle Ring */}
+      <div
+        className={`fixed rounded-full border border-white/60 transition-all duration-200 ${
+          isHovered
+            ? 'w-10 h-10 border-white bg-white/10 scale-125'
+            : 'w-4 h-4 border-white/40'
+        }`}
+        style={{
+          left: `${position.x}px`,
+          top: `${position.y}px`,
+          transform: 'translate(-50%, -50%)',
         }}
-        transition={{ type: 'spring', stiffness: 1000, damping: 40, mass: 0.1 }}
       />
-    </>
+    </div>
   );
 };
 

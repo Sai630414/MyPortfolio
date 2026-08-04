@@ -1,84 +1,87 @@
+import React from 'react';
 import { motion } from 'framer-motion';
-import { GraduationCap, Briefcase, Award } from 'lucide-react';
 
 const timelineData = [
   {
-    year: '2023 - Present',
-    title: 'Computer Science Student',
-    organization: 'VIT-AP University,Amaravati',
-    description: 'Currently pursuing my degree, focusing on web technologies, data structures, and software engineering principles.',
-    icon: GraduationCap
+    period: '2023 — PRESENT',
+    title: 'B.Tech Computer Science & Engineering',
+    institution: 'VIT-AP University, Amaravati',
+    summary: 'Focused on software engineering principles, full stack web systems, algorithms, and intelligent systems design.'
   },
-{
-  year: '2021 - 2023',
-  title: 'Intermediate (MPC)',
-  organization: 'Aakash Institute',
-  description:
-    'Completed Intermediate education in MPC stream. Developed strong analytical thinking, communication, and teamwork skills through academic and collaborative activities.',
-  icon: GraduationCap
-},
-{
-  year: '2019 - 2021',
-  title: 'Secondary Education',
-  organization: 'Narayana Olympiad School, Nellore',
-  description:
-    'Completed schooling with a focus on academics and problem-solving. Built a strong foundation in mathematics, logical reasoning, communication, and team management.',
-  icon: GraduationCap
-}
+  {
+    period: '2021 — 2023',
+    title: 'Senior Secondary Education (MPC)',
+    institution: 'Aakash Institute',
+    summary: 'Mastered core foundations in Mathematics, Physics, and Chemistry while honing logical reasoning and problem-solving skills.'
+  },
+  {
+    period: '2019 — 2021',
+    title: 'Secondary School Certification',
+    institution: 'Narayana Olympiad School, Nellore',
+    summary: 'Completed high school curriculum with distinction in academics, mathematics, and collaborative teamwork.'
+  }
 ];
 
 const Experience = () => {
   return (
-    <section id="experience" className="py-24 relative z-10 bg-surface/20">
-      <div className="container mx-auto px-6">
+    <section id="experience" className="py-32 relative z-10 border-b border-[#3A3A3A]/40">
+      <div className="container mx-auto px-6 md:px-12">
         
+        {/* Section Header */}
         <motion.div
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
-          transition={{ duration: 0.5 }}
-          className="text-center mb-16"
+          transition={{ duration: 0.6 }}
+          className="border-b border-[#3A3A3A] pb-4 mb-20 flex flex-wrap justify-between items-baseline"
         >
-          <h2 className="text-4xl md:text-5xl font-bold mb-4">My <span className="text-gradient">Journey</span></h2>
-          <div className="w-24 h-1 bg-gradient-to-r from-primary to-secondary mx-auto rounded-full"></div>
-          <p className="text-muted mt-6 max-w-2xl mx-auto">My educational background and learning milestones along my path to becoming a developer.</p>
+          <h2 className="font-serif text-4xl sm:text-5xl font-normal uppercase text-white tracking-tight">
+            SECTION IV • <span className="italic text-[#CFCFCF]">CHRONICLE & MILESTONES</span>
+          </h2>
+          <span className="font-mono text-xs text-[#7A7A7A] uppercase tracking-widest mt-2 sm:mt-0">
+            ACADEMIC RECORD
+          </span>
         </motion.div>
 
-        <div className="max-w-3xl mx-auto relative">
-          {/* Vertical Line */}
-          <div className="absolute left-4 md:left-1/2 top-0 bottom-0 w-0.5 bg-white/10 transform md:-translate-x-1/2"></div>
+        {/* Newspaper Style Timeline */}
+        <div className="max-w-4xl mx-auto relative">
+          
+          {/* Thin Vertical Divider Line */}
+          <div className="absolute left-4 sm:left-1/2 top-0 bottom-0 w-[1px] bg-[#3A3A3A] transform -translate-x-1/2" />
 
-          <div className="space-y-12">
+          <div className="space-y-16">
             {timelineData.map((item, index) => {
-              const Icon = item.icon;
               const isEven = index % 2 === 0;
               return (
-                <div key={index} className="relative flex flex-col md:flex-row items-center w-full">
+                <div key={index} className="relative flex flex-col sm:flex-row items-center w-full group">
                   
-                  {/* Timeline Dot */}
-                  <motion.div 
-                    initial={{ scale: 0 }}
-                    whileInView={{ scale: 1 }}
-                    viewport={{ once: true }}
-                    transition={{ duration: 0.5, delay: 0.2 }}
-                    className="absolute left-4 md:left-1/2 w-10 h-10 bg-surface border-2 border-primary rounded-full transform -translate-x-1/2 flex items-center justify-center z-20 shadow-[0_0_15px_rgba(59,130,246,0.5)]"
-                  >
-                    <Icon size={18} className="text-white" />
-                  </motion.div>
+                  {/* Small Circular Marker */}
+                  <div className="absolute left-4 sm:left-1/2 w-3 h-3 bg-white border border-[#0B0B0B] rounded-full transform -translate-x-1/2 z-20 group-hover:scale-150 transition-transform duration-300" />
 
-                  {/* Content Container */}
-                  <motion.div 
-                    initial={{ opacity: 0, x: isEven ? -50 : 50, y: 20 }}
-                    whileInView={{ opacity: 1, x: 0, y: 0 }}
+                  {/* Editorial Card Block */}
+                  <motion.div
+                    initial={{ opacity: 0, x: isEven ? -40 : 40 }}
+                    whileInView={{ opacity: 1, x: 0 }}
                     viewport={{ once: true }}
-                    transition={{ duration: 0.5, delay: 0.3 }}
-                    className={`w-full md:w-1/2 pl-16 md:pl-0 ${isEven ? 'md:pr-16 md:text-right' : 'md:pl-16 md:ml-auto'}`}
+                    transition={{ duration: 0.6, delay: 0.1 * index }}
+                    className={`w-full sm:w-1/2 pl-12 sm:pl-0 ${isEven ? 'sm:pr-12 sm:text-right' : 'sm:pl-12 sm:ml-auto'}`}
                   >
-                    <div className="glass-card p-6 rounded-2xl border border-white/5 hover:border-primary/30 transition-colors">
-                      <span className="text-primary font-bold text-sm tracking-widest uppercase mb-2 block">{item.year}</span>
-                      <h3 className="text-xl font-bold text-white mb-1">{item.title}</h3>
-                      <h4 className="text-muted text-sm mb-4 font-medium">{item.organization}</h4>
-                      <p className="text-muted/80 text-sm leading-relaxed">{item.description}</p>
+                    <div className="border border-[#3A3A3A] bg-[#141414] p-6 hover:border-white transition-colors duration-300">
+                      <span className="font-mono text-xs text-[#7A7A7A] uppercase tracking-widest block mb-2">
+                        {item.period}
+                      </span>
+
+                      <h3 className="font-serif text-xl sm:text-2xl font-normal text-white uppercase tracking-tight mb-1">
+                        {item.title}
+                      </h3>
+
+                      <h4 className="font-mono text-xs text-[#CFCFCF] uppercase tracking-wider mb-4">
+                        {item.institution}
+                      </h4>
+
+                      <p className="text-[#7A7A7A] text-sm font-sans font-light leading-relaxed">
+                        {item.summary}
+                      </p>
                     </div>
                   </motion.div>
 

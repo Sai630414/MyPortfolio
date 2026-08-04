@@ -1,16 +1,16 @@
-import { useState, useEffect } from 'react';
+import React, { useState, useEffect } from 'react';
 import { Link } from 'react-scroll';
 import { motion, AnimatePresence } from 'framer-motion';
 import { Menu, X } from 'lucide-react';
 import { cn } from '../../utils/cn';
 
 const navLinks = [
-  { name: 'Home', to: 'home' },
+  { name: 'Index', to: 'home' },
   { name: 'About', to: 'about' },
   { name: 'Skills', to: 'skills' },
-  { name: 'Projects', to: 'projects' },
-  { name: 'Education', to: 'experience' },
-  { name: 'Contact', to: 'contact' },
+  { name: 'Selected Works', to: 'projects' },
+  { name: 'Chronicle', to: 'experience' },
+  { name: 'Correspondence', to: 'contact' },
 ];
 
 const Navbar = () => {
@@ -19,12 +19,13 @@ const Navbar = () => {
 
   useEffect(() => {
     const handleScroll = () => {
-      if (window.scrollY > 50) {
+      if (window.scrollY > 40) {
         setScrolled(true);
       } else {
         setScrolled(false);
       }
     };
+
     window.addEventListener('scroll', handleScroll);
     return () => window.removeEventListener('scroll', handleScroll);
   }, []);
@@ -33,38 +34,48 @@ const Navbar = () => {
     <>
       <header
         className={cn(
-          "fixed top-0 w-full z-40 transition-all duration-300",
-          scrolled ? "glass py-4" : "py-6 bg-transparent"
+          "fixed top-0 left-0 right-0 z-40 transition-all duration-500 border-b border-[#3A3A3A]/40",
+          scrolled ? "bg-[#0B0B0B]/90 backdrop-blur-md py-4" : "bg-transparent py-6"
         )}
       >
         <div className="container mx-auto px-6 md:px-12 flex justify-between items-center">
-          <motion.div 
-            initial={{ opacity: 0, x: -20 }}
-            animate={{ opacity: 1, x: 0 }}
-            className="text-2xl font-bold font-sans tracking-tighter"
-          >
-            <span className="text-gradient">SK</span>
-          </motion.div>
+          
+          {/* Magazine Title Logo */}
+          <Link to="home" smooth={true} duration={600} className="cursor-pointer">
+            <motion.div 
+              initial={{ opacity: 0 }}
+              animate={{ opacity: 1 }}
+              className="flex items-baseline gap-2 font-serif"
+            >
+              <span className="text-xl md:text-2xl font-bold tracking-tight text-white uppercase">
+                SAI KONDAREDDY
+              </span>
+              <span className="text-xs text-[#7A7A7A] font-mono hidden sm:inline-block">
+                — VOL. I
+              </span>
+            </motion.div>
+          </Link>
 
           {/* Desktop Nav */}
-          <nav className="hidden md:flex gap-8">
+          <nav className="hidden md:flex items-center gap-8">
             {navLinks.map((link, index) => (
               <motion.div
                 key={link.name}
-                initial={{ opacity: 0, y: -10 }}
+                initial={{ opacity: 0, y: -5 }}
                 animate={{ opacity: 1, y: 0 }}
-                transition={{ delay: index * 0.1 }}
+                transition={{ delay: index * 0.05 }}
               >
                 <Link
                   to={link.to}
                   spy={true}
                   smooth={true}
                   offset={-80}
-                  duration={500}
-                  className="text-muted hover:text-white cursor-pointer transition-colors text-sm font-medium uppercase tracking-wider relative group"
+                  duration={600}
+                  activeClass="text-white border-b border-white"
+                  className="text-[#CFCFCF] hover:text-white cursor-pointer transition-all duration-300 text-xs uppercase font-mono tracking-widest py-1 relative group"
                 >
                   {link.name}
-                  <span className="absolute -bottom-1 left-0 w-0 h-0.5 bg-primary transition-all group-hover:w-full" />
+                  <span className="absolute bottom-0 left-0 w-0 h-[1px] bg-white transition-all duration-300 group-hover:w-full" />
                 </Link>
               </motion.div>
             ))}
@@ -74,22 +85,22 @@ const Navbar = () => {
           <div className="md:hidden">
             <button
               onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
-              className="text-white focus:outline-none"
+              className="text-white focus:outline-none p-1"
             >
-              {mobileMenuOpen ? <X size={28} /> : <Menu size={28} />}
+              {mobileMenuOpen ? <X size={24} /> : <Menu size={24} />}
             </button>
           </div>
         </div>
       </header>
 
-      {/* Mobile Nav Overlay */}
+      {/* Mobile Overlay Menu */}
       <AnimatePresence>
         {mobileMenuOpen && (
           <motion.div
-            initial={{ opacity: 0, y: -20 }}
-            animate={{ opacity: 1, y: 0 }}
-            exit={{ opacity: 0, y: -20 }}
-            className="fixed inset-0 z-30 glass flex flex-col items-center justify-center pt-20"
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            exit={{ opacity: 0 }}
+            className="fixed inset-0 z-30 bg-[#0B0B0B] flex flex-col items-center justify-center px-6 border-b border-[#3A3A3A]"
           >
             <div className="flex flex-col gap-8 text-center">
               {navLinks.map((link) => (
@@ -99,9 +110,9 @@ const Navbar = () => {
                   spy={true}
                   smooth={true}
                   offset={-80}
-                  duration={500}
+                  duration={600}
                   onClick={() => setMobileMenuOpen(false)}
-                  className="text-2xl font-bold text-white cursor-pointer hover:text-primary transition-colors"
+                  className="text-2xl font-serif tracking-wide text-white hover:text-[#CFCFCF] cursor-pointer"
                 >
                   {link.name}
                 </Link>

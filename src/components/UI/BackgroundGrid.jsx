@@ -1,18 +1,27 @@
-import { motion } from 'framer-motion';
+import React from 'react';
 
 const BackgroundGrid = () => {
   return (
-    <div className="fixed inset-0 z-[-1] overflow-hidden bg-background">
-      {/* Dynamic Animated Blobs */}
-      <div className="absolute top-[-10%] left-[-10%] w-[40%] h-[40%] rounded-full bg-primary/20 blur-[120px] mix-blend-screen animate-blob" />
-      <div className="absolute top-[20%] right-[-10%] w-[35%] h-[35%] rounded-full bg-secondary/20 blur-[120px] mix-blend-screen animate-blob animation-delay-2000" />
-      <div className="absolute bottom-[-10%] left-[20%] w-[40%] h-[40%] rounded-full bg-accent/20 blur-[120px] mix-blend-screen animate-blob animation-delay-4000" />
-      
-      {/* Grid Pattern overlay */}
+    <div className="fixed inset-0 pointer-events-none z-0 overflow-hidden bg-[#0B0B0B]">
+      {/* SVG Film Grain & Noise Overlay */}
+      <svg className="absolute inset-0 w-full h-full opacity-[0.06] mix-blend-overlay pointer-events-none">
+        <filter id="noiseFilter">
+          <feTurbulence type="fractalNoise" baseFrequency="0.8" numOctaves="3" stitchTiles="stitch" />
+        </filter>
+        <rect width="100%" height="100%" filter="url(#noiseFilter)" />
+      </svg>
+
+      {/* Subtle Dust & Paper Scratches Layer */}
       <div 
-        className="absolute inset-0 bg-[linear-gradient(to_right,#80808012_1px,transparent_1px),linear-gradient(to_bottom,#80808012_1px,transparent_1px)] bg-[size:40px_40px]"
-        style={{ maskImage: 'radial-gradient(ellipse 60% 60% at 50% 50%, #000 70%, transparent 100%)', WebkitMaskImage: 'radial-gradient(ellipse 60% 60% at 50% 50%, #000 70%, transparent 100%)' }}
+        className="absolute inset-0 opacity-[0.03] pointer-events-none"
+        style={{
+          backgroundImage: `radial-gradient(#ffffff 1px, transparent 0)`,
+          backgroundSize: '24px 24px',
+        }}
       />
+
+      {/* Vintage Photographic Vignette */}
+      <div className="absolute inset-0 bg-radial from-transparent via-[#0B0B0B]/40 to-[#0B0B0B] pointer-events-none z-0" />
     </div>
   );
 };

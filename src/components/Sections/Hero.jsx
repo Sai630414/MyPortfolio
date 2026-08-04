@@ -1,131 +1,155 @@
+import React from 'react';
 import { motion } from 'framer-motion';
 import { Typewriter } from 'react-simple-typewriter';
-import { FaReact, FaNodeJs, FaHtml5, FaCss3Alt } from 'react-icons/fa';
 import { Link } from 'react-scroll';
-
-const floatingAnimation = {
-  y: ['-10px', '10px'],
-  transition: {
-    duration: 2,
-    repeat: Infinity,
-    repeatType: 'reverse',
-    ease: 'easeInOut'
-  }
-};
+import heroImg from '../../assets/hero.png';
 
 const Hero = () => {
   return (
-    <section id="home" className="min-h-screen flex items-center justify-center relative pt-20">
-      <div className="container mx-auto px-6 relative z-10 flex flex-col md:flex-row items-center justify-between">
-        
-        {/* Text Content */}
-        <div className="w-full md:w-1/2 flex flex-col items-center md:items-start text-center md:text-left">
-          <motion.p
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.5 }}
-            className="text-accent font-medium mb-4 text-lg tracking-wide uppercase"
-          >
-            Welcome to my portfolio
-          </motion.p>
-          
-          <motion.h1
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.5, delay: 0.1 }}
-            className="text-5xl md:text-7xl font-bold mb-6"
-          >
-            Hi, I'm <br />
-            <span className="text-gradient leading-tight">Sai KondaReddy</span>
-          </motion.h1>
+    <section id="home" className="min-h-screen pt-32 pb-20 flex flex-col justify-between relative z-10 overflow-hidden border-b border-[#3A3A3A]/40">
 
-          <motion.h2
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.5, delay: 0.2 }}
-            className="text-2xl md:text-3xl text-muted font-light mb-8 h-[40px]"
-          >
-            I am a{' '}
-            <span className="text-white font-semibold">
-              <Typewriter
-                words={['Student','FullStack Enthusiast']}
-                loop={true}
-                cursor
-                cursorStyle="_"
-                typeSpeed={70}
-                deleteSpeed={50}
-                delaySpeed={1000}
-              />
-            </span>
-          </motion.h2>
+      <div className="container mx-auto px-6 md:px-12 flex-1 flex flex-col justify-center">
 
-          <motion.p
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.5, delay: 0.3 }}
-            className="text-muted max-w-lg mb-10 text-lg leading-relaxed"
-          >
-            Building modern web experiences with React and creativity. Dedicated to crafting premium, fast, and responsive user interfaces.
-          </motion.p>
+        {/* Magazine Issue Metadata Header */}
+        <motion.div
+          initial={{ opacity: 0, y: 15 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.6 }}
+          className="flex flex-wrap items-center justify-between border-b border-[#3A3A3A] pb-3 mb-10 text-xs font-mono text-[#7A7A7A] uppercase tracking-[0.2em]"
+        >
+          <span>EDITORIAL SHOWCASE • 2026 EDITION</span>
+          <span>LOCATION: KADAPA, AP, INDIA</span>
+          <span>EST. 2023</span>
+        </motion.div>
 
-          <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.5, delay: 0.4 }}
-            className="flex flex-wrap gap-4 justify-center md:justify-start"
-          >
-            <Link
-              to="projects"
-              smooth={true}
-              offset={-80}
-              duration={500}
-              className="px-8 py-3 rounded-full bg-primary text-white font-semibold hover:bg-blue-600 transition-colors shadow-[0_0_20px_rgba(59,130,246,0.4)] hover:shadow-[0_0_30px_rgba(59,130,246,0.6)] cursor-pointer"
+        <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 items-center">
+
+          {/* Left Column: Magazine Cover Typography */}
+          <div className="lg:col-span-7 space-y-8 text-left">
+
+            <motion.div
+              initial={{ opacity: 0, y: 20 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.7, delay: 0.1 }}
             >
-              View Projects
-            </Link>
-            <Link
-              to="contact"
-              smooth={true}
-              offset={-80}
-              duration={500}
-              className="px-8 py-3 rounded-full border border-white/20 hover:border-white/50 text-white font-semibold transition-all glass cursor-pointer"
+              <span className="font-mono text-xs text-[#7A7A7A] uppercase tracking-[0.3em] block mb-2">
+                PORTFOLIO NO. 01
+              </span>
+
+              <h1 className="font-serif text-5xl sm:text-7xl xl:text-8xl font-normal text-white uppercase tracking-tight leading-[0.9]">
+                SAI <br />
+                <span className="italic font-light text-[#CFCFCF]">KONDAREDDY</span>
+              </h1>
+            </motion.div>
+
+            {/* Typewriter Subtitle */}
+            <motion.div
+              initial={{ opacity: 0, y: 20 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.7, delay: 0.2 }}
+              className="text-lg sm:text-2xl font-serif text-[#CFCFCF] font-light pt-2 h-[45px] flex items-center"
             >
-              Contact Me
-            </Link>
-          </motion.div>
-        </div>
-
-        {/* Floating Icons / Visual Content */}
-        <div className="w-full md:w-1/2 mt-16 md:mt-0 flex justify-center relative h-[400px]">
-          <motion.div
-            initial={{ opacity: 0, scale: 0.8 }}
-            animate={{ opacity: 1, scale: 1 }}
-            transition={{ duration: 0.8 }}
-            className="relative w-64 h-64 md:w-80 md:h-80 glass-card rounded-full flex items-center justify-center border-primary/30 border-2"
-          >
-            {/* Main Avatar Placeholder */}
-            <div className="w-full h-full rounded-full bg-gradient-to-br from-primary/20 to-secondary/20 flex items-center justify-center p-8 overflow-hidden">
-               {/* Later this can be an img tag if the user provides an image */}
-               <span className="text-6xl font-bold text-white/50">SK</span>
-            </div>
-
-            {/* Orbiting Tech Icons */}
-            <motion.div animate={floatingAnimation} className="absolute -top-6 -left-6 text-5xl text-[#61DAFB] bg-surface p-3 rounded-full border border-white/10 shadow-lg">
-              <FaReact />
-            </motion.div>
-            <motion.div animate={floatingAnimation} className="absolute top-10 -right-8 text-5xl text-[#68A063] bg-surface p-3 rounded-full border border-white/10 shadow-lg" style={{ animationDelay: '0.5s' }}>
-              <FaNodeJs />
-            </motion.div>
-            <motion.div animate={floatingAnimation} className="absolute bottom-10 -left-4 text-5xl text-[#E34F26] bg-surface p-3 rounded-full border border-white/10 shadow-lg" style={{ animationDelay: '1s' }}>
-              <FaHtml5 />
-            </motion.div>
-            <motion.div animate={floatingAnimation} className="absolute -bottom-8 right-10 text-5xl text-[#1572B6] bg-surface p-3 rounded-full border border-white/10 shadow-lg" style={{ animationDelay: '1.5s' }}>
-              <FaCss3Alt />
+              <span>Specializing in &nbsp;</span>
+              <span className="font-mono text-white text-base sm:text-xl border-b border-white pb-0.5">
+                <Typewriter
+                  words={[
+                    'Software Engineering',
+                    'AI System Building',
+                    'Java Development',
+                    'Full Stack Solutions',
+                    'Analytical Problem Solving'
+                  ]}
+                  loop={true}
+                  cursor
+                  cursorStyle="|"
+                  typeSpeed={50}
+                  deleteSpeed={35}
+                  delaySpeed={1500}
+                />
+              </span>
             </motion.div>
 
-          </motion.div>
+            <motion.p
+              initial={{ opacity: 0, y: 20 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.7, delay: 0.3 }}
+              className="text-[#CFCFCF] text-base sm:text-lg max-w-xl font-sans font-light leading-relaxed pt-2"
+            >
+              Dedicated to crafting timeless digital software, robust full stack systems, and intelligent user experiences through clean architecture and intentional design.
+            </motion.p>
+
+            {/* Minimal Outline Buttons (Invert colors on hover) */}
+            <motion.div
+              initial={{ opacity: 0, y: 20 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.7, delay: 0.4 }}
+              className="flex flex-wrap gap-4 pt-4"
+            >
+              <Link
+                to="projects"
+                smooth={true}
+                offset={-80}
+                duration={600}
+                className="px-8 py-4 border border-white text-white font-mono text-xs uppercase tracking-[0.2em] hover:bg-white hover:text-black transition-all duration-300 cursor-pointer"
+              >
+                View Works
+              </Link>
+
+              <a
+                href="https://github.com/Sai630414"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="px-8 py-4 border border-[#3A3A3A] text-[#CFCFCF] hover:border-white hover:text-white font-mono text-xs uppercase tracking-[0.2em] transition-all duration-300 cursor-pointer"
+              >
+                GitHub Profile
+              </a>
+
+              <Link
+                to="contact"
+                smooth={true}
+                offset={-80}
+                duration={600}
+                className="px-8 py-4 border border-[#3A3A3A] text-[#7A7A7A] hover:border-white hover:text-white font-mono text-xs uppercase tracking-[0.2em] transition-all duration-300 cursor-pointer"
+              >
+                Correspondence
+              </Link>
+            </motion.div>
+
+          </div>
+
+          {/* Right Column: Leica B&W Photo Frame */}
+          <div className="lg:col-span-5 flex justify-center">
+            <motion.div
+              initial={{ opacity: 0, scale: 0.95 }}
+              animate={{ opacity: 1, scale: 1 }}
+              transition={{ duration: 0.8, delay: 0.2 }}
+              className="relative p-4 border border-[#3A3A3A] bg-[#141414] max-w-sm sm:max-w-md w-full group"
+            >
+              {/* Paper Photo Border Frame */}
+              <div className="p-3 border border-white/20 bg-[#0B0B0B] relative overflow-hidden">
+                <div className="relative overflow-hidden aspect-[4/5]">
+                  <img
+                    src={heroImg}
+                    alt="Sai KondaReddy - Leica Vintage Portrait"
+                    className="w-full h-full object-cover leica-bw group-hover:scale-105 transition-all duration-700"
+                  />
+
+                  {/* Subtle Grain Overlay on Image */}
+                  <div className="absolute inset-0 bg-black/10 mix-blend-overlay pointer-events-none" />
+                </div>
+
+                {/* Handwritten Style Caption */}
+                <div className="pt-4 flex justify-between items-center font-mono text-[10px] text-[#7A7A7A] uppercase tracking-wider">
+                  <span>FIG 1.0 — PORTRAIT</span>
+                  <span>LEICA M MONOCHROM</span>
+                </div>
+              </div>
+            </motion.div>
+          </div>
+
         </div>
       </div>
+
     </section>
   );
 };

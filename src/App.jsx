@@ -1,3 +1,4 @@
+import React from 'react';
 import Navbar from './components/Navigation/Navbar';
 import Hero from './components/Sections/Hero';
 import About from './components/Sections/About';
@@ -8,18 +9,18 @@ import Contact from './components/Sections/Contact';
 import Footer from './components/Footer';
 import CustomCursor from './components/UI/CustomCursor';
 import BackgroundGrid from './components/UI/BackgroundGrid';
-import ScrollProgress from './components/UI/ScrollProgress';
+import Preloader from './components/UI/Preloader';
 
 function App() {
   return (
-    <div className="relative min-h-screen">
+    <div className="relative min-h-screen bg-[#0B0B0B] text-white font-sans selection:bg-white selection:text-black">
+      <Preloader />
       <CustomCursor />
       <BackgroundGrid />
-      <ScrollProgress />
       
       <Navbar />
       
-      <main>
+      <main className="relative z-10">
         <Hero />
         <About />
         <Skills />
