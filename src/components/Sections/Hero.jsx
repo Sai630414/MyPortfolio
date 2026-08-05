@@ -53,11 +53,8 @@ const Hero = () => {
               <span className="font-mono text-white text-base sm:text-xl border-b border-white pb-0.5">
                 <Typewriter
                   words={[
-                    'Software Engineering',
-                    'AI System Building',
-                    'Java Development',
-                    'Full Stack Solutions',
-                    'Analytical Problem Solving'
+                    'Full Stack Developer',
+                    'MERN Stack Developer'
                   ]}
                   loop={true}
                   cursor
