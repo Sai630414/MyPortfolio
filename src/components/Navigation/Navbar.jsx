@@ -5,7 +5,7 @@ import { Menu, X } from 'lucide-react';
 import { cn } from '../../utils/cn';
 
 const navLinks = [
-  { name: 'Inde', to: 'home' },
+  { name: 'Index', to: 'home' },
   { name: 'About', to: 'about' },
   { name: 'Skills', to: 'skills' },
   { name: 'Selected Works', to: 'projects' },
